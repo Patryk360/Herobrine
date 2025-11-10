@@ -3,12 +3,11 @@ package pl.dewersee.herobrine.commands
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.plugin.java.JavaPlugin
+import pl.dewersee.herobrine.functions.HerobrineRandomTeleport
 
-class HerobrineCommand : CommandExecutor {
+class HerobrineCommand(val plugin: JavaPlugin) : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (sender !is Player) {
@@ -21,14 +20,10 @@ class HerobrineCommand : CommandExecutor {
             return true
         }
 
-        val loc = sender.location
-        val world = sender.world
+        val teleporter = HerobrineRandomTeleport()
+        teleporter.tp(plugin)
 
-        val zombie = world.spawnEntity(loc, EntityType.ZOMBIE) as org.bukkit.entity.Zombie
-        zombie.customName(Component.text("Herobrine").color(NamedTextColor.YELLOW))
-        zombie.isCustomNameVisible = true
-
-        sender.sendMessage("§cHerobrine został przywołany!")
+        sender.sendMessage("§cHerobrine przybył!")
 
         return true
     }

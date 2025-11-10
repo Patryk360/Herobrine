@@ -1,0 +1,5 @@
+herobrine:
+  totem-enabled: false
+  death: false
+  death-timeout: 120
+  tp-timeout: 60

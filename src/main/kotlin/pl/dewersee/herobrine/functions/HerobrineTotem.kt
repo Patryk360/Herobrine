@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin
 
 data class BlockPosition(val x: Int, val y: Int, val z: Int, val type: Material)
 
-class Totem(val plugin: JavaPlugin) : Listener {
+class HerobrineTotem(val plugin: JavaPlugin) : Listener {
 
     @EventHandler
     fun onBlockIgnite(event: BlockIgniteEvent) {
@@ -57,7 +57,7 @@ class Totem(val plugin: JavaPlugin) : Listener {
             val b = world.getBlockAt(block.x + bp.x, block.y + bp.y, block.z + bp.z)
             plugin.logger.info(" x: " + b.x.toString() + " y: " + b.y.toString()+ " z: " + b.z.toString() + " " + b.type.toString())
             if (b.type != bp.type) {
-               break
+                break
             }
             isTotem++
         }
@@ -65,8 +65,17 @@ class Totem(val plugin: JavaPlugin) : Listener {
         if (isTotem == 18) {
             player.sendMessage("Herobrine come back!")
             val zombie = world.spawnEntity(player.location, EntityType.ZOMBIE) as org.bukkit.entity.Zombie
+            zombie.addScoreboardTag("herobrine")
             zombie.customName(Component.text("Herobrine").color(NamedTextColor.YELLOW))
             zombie.isCustomNameVisible = true
+            zombie.isSilent = true
+            zombie.removeWhenFarAway = false
+            zombie.isPersistent = true
+            zombie.setAdult()
+            zombie.setShouldBurnInDay(false)
+
+            plugin.config.set("herobrine.totem-enabled", true)
+            plugin.saveConfig()
         }
     }
 }
