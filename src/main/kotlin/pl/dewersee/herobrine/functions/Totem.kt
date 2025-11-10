@@ -22,7 +22,6 @@ class Totem(val plugin: JavaPlugin) : Listener {
 
         if (player !is Player) return
         val bl = world.getBlockAt(block.x, block.y -1, block.z)
-        plugin.logger.info(bl.type.toString())
         if (bl.type != Material.NETHERRACK) return
 
         val totemBlocks = arrayOf(
@@ -64,9 +63,9 @@ class Totem(val plugin: JavaPlugin) : Listener {
         }
 
         if (isTotem == 18) {
-            player.sendMessage("OK")
+            player.sendMessage("Herobrine come back!")
             val zombie = world.spawnEntity(player.location, EntityType.ZOMBIE) as org.bukkit.entity.Zombie
-            zombie.customName(Component.text("Herobrine").color(NamedTextColor.RED))
+            zombie.customName(Component.text("Herobrine").color(NamedTextColor.YELLOW))
             zombie.isCustomNameVisible = true
         }
     }

@@ -25,7 +25,7 @@ class HerobrineCommand : CommandExecutor {
         val world = sender.world
 
         val zombie = world.spawnEntity(loc, EntityType.ZOMBIE) as org.bukkit.entity.Zombie
-        zombie.customName(Component.text("Herobrine").color(NamedTextColor.RED))
+        zombie.customName(Component.text("Herobrine").color(NamedTextColor.YELLOW))
         zombie.isCustomNameVisible = true
 
         sender.sendMessage("§cHerobrine został przywołany!")
