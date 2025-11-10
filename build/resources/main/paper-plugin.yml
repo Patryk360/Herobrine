@@ -2,3 +2,7 @@ name: Herobrine
 version: '0.0.1'
 main: pl.dewersee.herobrine.HerobrinePlugin
 api-version: '1.21'
+permissions:
+  herobrine.use:
+    description: Pozwala używać komendy /herobrine
+    default: op
