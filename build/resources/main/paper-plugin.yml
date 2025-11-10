@@ -1,0 +1,8 @@
+name: Herobrine
+version: '0.0.1'
+main: pl.dewersee.herobrine.HerobrinePlugin
+api-version: '1.21'
+commands:
+  hello:
+    description: Wysyła powitanie do gracza
+    usage: /hello
